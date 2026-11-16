@@ -135,3 +135,81 @@ footer {
         font-size: 23px;
     }
 }
+/* CHESS PUZZLE */
+
+.puzzle-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.puzzle-info h3 {
+    color: #24533a;
+    margin: 12px 0 8px;
+}
+
+.difficulty {
+    display: inline-block;
+    background: #e1eee4;
+    color: #24533a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.chess-board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 100%;
+    max-width: 420px;
+    margin: 20px auto;
+    border: 5px solid #18392b;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.square {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 7vw, 42px);
+}
+
+.light-square {
+    background: #f0d9b5;
+}
+
+.dark-square {
+    background: #b58863;
+}
+
+.puzzle-question {
+    max-width: 420px;
+    margin: 25px auto 0;
+}
+
+.puzzle-question label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.puzzle-question input {
+    width: 100%;
+}
+
+.hint-button {
+    background: #b58863;
+}
+
+#puzzleResult {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #24533a;
+}
+
+#puzzleHint {
+    margin-top: 10px;
+    color: #68756d;
+}
