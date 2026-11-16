@@ -86,17 +86,86 @@ function displayMatches() {
 }
 
 // Puzzle sederhana
+/* CHESS PUZZLE */
+
+// Posisi puzzle dari sudut pandang putih
+const puzzlePosition = [
+    ".......♚",
+    "........",
+    ".....♔♕.",
+    "........",
+    "........",
+    "........",
+    "........",
+    "........"
+];
+
+// Membuat papan catur
+function renderPuzzle() {
+    const board = document.getElementById("puzzleBoard");
+
+    board.innerHTML = "";
+
+    puzzlePosition.forEach((row, rowIndex) => {
+        Array.from(row).forEach((piece, colIndex) => {
+            const square = document.createElement("div");
+
+            square.classList.add("square");
+
+            if ((rowIndex + colIndex) % 2 === 0) {
+                square.classList.add("light-square");
+            } else {
+                square.classList.add("dark-square");
+            }
+
+            square.textContent = piece === "." ? "" : piece;
+
+            board.appendChild(square);
+        });
+    });
+}
+
+// Memeriksa jawaban
 function checkPuzzle() {
-    const answer = document.getElementById("puzzleAnswer")
-        .value.trim().toLowerCase();
+    const answer = document
+        .getElementById("puzzleAnswer")
+        .value
+        .trim()
+        .toLowerCase()
+        .replace(/\s/g, "");
 
     const result = document.getElementById("puzzleResult");
 
-    if (answer === "qg7#") {
-        result.textContent = "Benar! Jawabanmu tepat.";
-    } else {
-        result.textContent = "Belum tepat. Coba lagi!";
+    if (!answer) {
+        result.textContent = "Masukkan jawaban terlebih dahulu!";
+        return;
     }
+
+    if (["qg7#", "qg7", "g6g7"].includes(answer)) {
+        result.textContent =
+            "Benar! ♕ Qg7# adalah CHECKMATE! Kamu berhasil!";
+    } else {
+        result.textContent =
+            "Belum tepat. Coba pikirkan langkah skakmatnya lagi!";
+    }
+}
+
+// Memberikan petunjuk
+function showHint() {
+    document.getElementById("puzzleHint").textContent =
+        "Petunjuk: Gunakan menteri putih untuk menyerang petak g7.";
+}
+
+// Reset puzzle
+function resetPuzzle() {
+    document.getElementById("puzzleAnswer").value = "";
+    document.getElementById("puzzleResult").textContent = "";
+    document.getElementById("puzzleHint").textContent = "";
+}if (feature === "puzzle") {
+    renderPuzzle();
+    resetPuzzle();
+}
+
 }
 
 // Analisis hasil pertandingan
