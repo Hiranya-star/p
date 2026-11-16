@@ -1,94 +1,15 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Training Assistant</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    <!-- Menghubungkan CSS -->
+    <link rel="stylesheet" href="style.css">
 
-        body {
-            background-color: #f3f4f6;
-            color: #222;
-        }
-
-        header {
-            background-color: #18392b;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-
-        header h1 {
-            margin-bottom: 8px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .welcome {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .menu {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-
-        .card h2 {
-            color: #18392b;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            margin-bottom: 18px;
-            color: #555;
-        }
-
-        button {
-            background-color: #18392b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 7px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #286044;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-
-        @media (max-width: 600px) {
-            .menu {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Menghubungkan JavaScript -->
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -98,59 +19,99 @@
         <p>Your Personal Chess Trainer</p>
     </header>
 
-    <div class="container">
+    <main class="container">
 
-        <div class="welcome">
+        <section class="welcome">
             <h2>Welcome, Chess Player!</h2>
-            <p>Improve your chess skills and track your progress.</p>
-        </div>
+            <p>Improve your skills, track your matches, and become better.</p>
+        </section>
 
-        <div class="menu">
+        <section class="menu">
 
             <div class="card">
                 <h2>👤 Player Profile</h2>
-                <p>View your personal chess player profile.</p>
-                <button onclick="showMessage('Player Profile')">
-                    Open
-                </button>
+                <p>Masukkan identitas pemain catur.</p>
+                <button onclick="openFeature('profile')">Open</button>
             </div>
 
             <div class="card">
                 <h2>📊 Match Tracker</h2>
-                <p>Record your chess match results.</p>
-                <button onclick="showMessage('Match Tracker')">
-                    Open
-                </button>
+                <p>Catat hasil pertandingan catur.</p>
+                <button onclick="openFeature('match')">Open</button>
             </div>
 
             <div class="card">
                 <h2>🧩 Chess Puzzle</h2>
-                <p>Practice your chess tactics and strategy.</p>
-                <button onclick="showMessage('Chess Puzzle')">
-                    Open
-                </button>
+                <p>Uji kemampuan strategi dan taktik.</p>
+                <button onclick="openFeature('puzzle')">Open</button>
             </div>
 
             <div class="card">
                 <h2>📈 Performance Analysis</h2>
-                <p>See your chess training progress.</p>
-                <button onclick="showMessage('Performance Analysis')">
-                    Open
-                </button>
+                <p>Lihat perkembangan hasil pertandingan.</p>
+                <button onclick="openFeature('analysis')">Open</button>
             </div>
 
-        </div>
-    </div>
+        </section>
+
+        <!-- PLAYER PROFILE -->
+        <section id="profile" class="feature hidden">
+            <h2>Player Profile</h2>
+            <input id="playerName" placeholder="Nama pemain">
+            <select id="playerLevel">
+                <option value="">Pilih level</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+            </select>
+            <button onclick="saveProfile()">Save Profile</button>
+            <p id="profileResult"></p>
+            <button class="back" onclick="goHome()">Back</button>
+        </section>
+
+        <!-- MATCH TRACKER -->
+        <section id="match" class="feature hidden">
+            <h2>Match Tracker</h2>
+            <input id="opponent" placeholder="Nama lawan">
+            <select id="matchResult">
+                <option value="">Pilih hasil</option>
+                <option value="Win">Win</option>
+                <option value="Draw">Draw</option>
+                <option value="Loss">Loss</option>
+            </select>
+            <button onclick="saveMatch()">Save Match</button>
+            <ul id="matchList"></ul>
+            <button class="back" onclick="goHome()">Back</button>
+        </section>
+
+        <!-- CHESS PUZZLE -->
+        <section id="puzzle" class="feature hidden">
+            <h2>Chess Puzzle</h2>
+            <p>Bidak putih dapat melakukan skakmat dalam satu langkah.</p>
+            <p><strong>Langkah apa yang akan kamu pilih?</strong></p>
+            <input id="puzzleAnswer" placeholder="Tulis jawabanmu">
+            <button onclick="checkPuzzle()">Check Answer</button>
+            <p id="puzzleResult"></p>
+            <button class="back" onclick="goHome()">Back</button>
+        </section>
+
+        <!-- PERFORMANCE ANALYSIS -->
+        <section id="analysis" class="feature hidden">
+            <h2>Performance Analysis</h2>
+            <p id="totalMatches">Total Matches: 0</p>
+            <p id="totalWins">Wins: 0</p>
+            <p id="totalDraws">Draws: 0</p>
+            <p id="totalLosses">Losses: 0</p>
+            <button onclick="showAnalysis()">Refresh Analysis</button>
+            <button class="back" onclick="goHome()">Back</button>
+        </section>
+
+    </main>
 
     <footer>
         <p>Chess Training Assistant © 2026</p>
     </footer>
 
-    <script>
-        function showMessage(feature) {
-            alert(feature + " feature is coming soon!");
-        }
-    </script>
-
 </body>
 </html>
+        
