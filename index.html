@@ -84,16 +84,38 @@
             <button class="back" onclick="goHome()">Back</button>
         </section>
 
-        <!-- CHESS PUZZLE -->
-        <section id="puzzle" class="feature hidden">
-            <h2>Chess Puzzle</h2>
-            <p>Bidak putih dapat melakukan skakmat dalam satu langkah.</p>
-            <p><strong>Langkah apa yang akan kamu pilih?</strong></p>
-            <input id="puzzleAnswer" placeholder="Tulis jawabanmu">
-            <button onclick="checkPuzzle()">Check Answer</button>
-            <p id="puzzleResult"></p>
-            <button class="back" onclick="goHome()">Back</button>
-        </section>
+      <!-- CHESS PUZZLE -->
+<section id="puzzle" class="feature hidden">
+
+    <h2>♟ Chess Puzzle</h2>
+
+    <div class="puzzle-info">
+        <span class="difficulty">BEGINNER</span>
+        <h3>Checkmate in One</h3>
+        <p>Putih jalan dan skakmat dalam satu langkah.</p>
+    </div>
+
+    <div id="puzzleBoard" class="chess-board"></div>
+
+    <div class="puzzle-question">
+        <label for="puzzleAnswer">Masukkan langkah terbaik:</label>
+
+        <input
+            id="puzzleAnswer"
+            type="text"
+            placeholder="Contoh: Qg7#"
+        >
+
+        <button onclick="checkPuzzle()">Check Answer</button>
+        <button class="hint-button" onclick="showHint()">Show Hint</button>
+
+        <p id="puzzleResult"></p>
+        <p id="puzzleHint"></p>
+    </div>
+
+    <button class="back" onclick="goHome()">Back</button>
+
+</section>
 
         <!-- PERFORMANCE ANALYSIS -->
         <section id="analysis" class="feature hidden">
